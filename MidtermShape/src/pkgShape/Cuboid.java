@@ -43,7 +43,7 @@ public class Cuboid extends Rectangle implements Comparable<Object>{
 		
 		//public SortByArea() {}
 		//could not see in unit tests because of default constructor package restrictions, but changing it also did nothing
-		SortByArea() {}
+		public SortByArea() {}
 		
 		@Override
 		public int compare(Cuboid arg0, Cuboid arg1) {

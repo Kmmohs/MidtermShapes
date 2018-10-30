@@ -1,9 +1,13 @@
 package pkgTest;
 
+import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertArrayEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
+import java.util.ArrayList;
 import java.util.Collections;
 
 import org.junit.Assert;
@@ -45,27 +49,74 @@ class CuboidTests {
 		Cuboid A = new Cuboid(1, 2, 3);
 		assertTrue("Surface Area should be 22 (areaTest)", 22 == A.area());
 	}
-	//Exception UnsupportedOperationException = new Exception();
-	@Test(expected = UnsupportedOperationException.class)
-	public void perimeterTest() {
-		Cuboid A = new Cuboid(1, 2, 3);
-		A.perimeter();
-		//assertThrows(A.perimeter(), new UnsupportedOperationException(), "Perimeter should be UnsupportedOperationException");
-	}
 	
-	@Test(expected = UnsupportedOperationException.class)
+//Does not work...?
+//	//Exception UnsupportedOperationException = new Exception();
+//	@Test(expected = UnsupportedOperationException.class)
+//	public void perimeterTest() {
+//		Cuboid A = new Cuboid(1, 2, 3);
+//		A.perimeter();
+//		//assertThrows(A.perimeter(), new UnsupportedOperationException(), "Perimeter should be UnsupportedOperationException");
+//	}
+	
+	@Test
+	public void perimeterTest() {
+		
+		boolean throwsError = false;
+
+		try {
+			Cuboid A = new Cuboid(1, 2, 3);
+			A.perimeter();
+		}
+		catch (Exception UnsupportedOperationException) {
+			throwsError = true;
+		}
+
+		assertTrue(throwsError);
+	}
+
+//Does not work...?
+//	@Test(expected = UnsupportedOperationException.class)
+//	public void compareToTest() {
+//		Cuboid A = new Cuboid(1, 2, 3);
+//		Cuboid B = new Cuboid(3, 1, 4);
+//		A.compareTo(B);
+//		//assertThrows(A.perimeter(), new UnsupportedOperationException(), "compareTo should be UnsupportedOperationException");
+//	}
+	
+	@Test
 	public void compareToTest() {
-		Cuboid A = new Cuboid(1, 2, 3);
-		Cuboid B = new Cuboid(3, 1, 4);
-		A.compareTo(B);
-		//assertThrows(A.perimeter(), new UnsupportedOperationException(), "compareTo should be UnsupportedOperationException");
+		
+		boolean throwsError = false;
+		
+		try {
+			Cuboid A = new Cuboid(1, 2, 3);
+			Cuboid B = new Cuboid(3, 1, 4);
+			A.compareTo(B);
+		}
+		catch (Exception UnsupportedOperationException) {
+			throwsError = true;
+		}
+		assertTrue(throwsError);
 	}
 	
 	@Test
 	public void SortByAreaTest() {
+		
 		Cuboid A = new Cuboid(2, 2, 3);
 		Cuboid B = new Cuboid(3, 1, 4);
-		assertTrue("A should be smaller than B (SortByAreaTest_SurfaceArea)", Collections.sort([A,B], new /*Cuboid.*/SortByArea());
+		
+		ArrayList<Cuboid> arr = new ArrayList<Cuboid>(2);
+		arr.add(A);
+		arr.add(B);
+		
+		ArrayList<Cuboid> sortedArr = new ArrayList<Cuboid>(2);
+		arr.add(A);
+		arr.add(B);
+		
+		Collections.sort(arr, new Cuboid.SortByArea());
+		
+		assertArrayEquals("A should be smaller than B (SortByAreaTest_SurfaceArea)", arr, sortedArr);
 	}
 	
 	@Test
