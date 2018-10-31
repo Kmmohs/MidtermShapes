@@ -39,7 +39,7 @@ public class Cuboid extends Rectangle implements Comparable<Object>{
 		throw new UnsupportedOperationException("Must specify by Volume or by Surface Area");
 	}
 	
-	public class SortByArea implements Comparator<Cuboid>{
+	public static class SortByArea implements Comparator<Cuboid>{
 		
 		//public SortByArea() {}
 		//could not see in unit tests because of default constructor package restrictions, but changing it also did nothing
@@ -61,11 +61,11 @@ public class Cuboid extends Rectangle implements Comparable<Object>{
 		}
 	}
 	
-	public class SortByVolume implements Comparator<Cuboid>{
+	public static class SortByVolume implements Comparator<Cuboid>{
 		
 		//public SortByVolume(){}
 		//could not see in unit tests because of default constructor package restrictions, but changing it also did nothing
-		SortByVolume() {}
+		public SortByVolume() {}
 		
 		@Override
 		public int compare(Cuboid o1, Cuboid o2) {
